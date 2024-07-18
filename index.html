@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJS Bootcamp Widgets</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="greet.js" defer></script>
+    <script src="transportFee.js" defer></script>
+    <script src="totalPhoneBill.js" defer></script>
+    <script src="enoughAirtime.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .widget {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        input, select, button {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="widget" x-data="{ name: '', language: 'English', greeting: '' }">
+        <h2>Greet Function</h2>
+        <input type="text" placeholder="Enter your name" x-model="name">
+        <select x-model="language">
+            <option value="English">English</option>
+            <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+        </select>
+        <button @click="greeting = greet(name, language)">Greet</button>
+        <p x-text="greeting"></p>
+    </div>
+
+    <div class="widget" x-data="{ shift: '', fee: '' }">
+        <h2>Transport Fee Function</h2>
+        <div>
+            <input type="radio" id="morning" value="morning" x-model="shift">
+            <label for="morning">Morning</label>
+        </div>
+        <div>
+            <input type="radio" id="afternoon" value="afternoon" x-model="shift">
+            <label for="afternoon">Afternoon</label>
+        </div>
+        <div>
+            <input type="radio" id="nightshift" value="nightshift" x-model="shift">
+            <label for="nightshift">Nightshift</label>
+        </div>
+        <button @click="fee = transportFee(shift)">Calculate Fee</button>
+        <p x-text="fee"></p>
+    </div>
+
+    <div class="widget" x-data="{ phoneString: '', total: '' }">
+        <h2>Total Phone Bill Function</h2>
+        <input type="text" placeholder="Enter phone string" x-model="phoneString">
+        <button @click="total = totalPhoneBill(phoneString)">Calculate Total</button>
+        <p x-text="total"></p>
+    </div>
+
+    <div class="widget" x-data="{ usage: '', airtime: '', remaining: '' }">
+        <h2>Enough Airtime Function</h2>
+        <input type="text" placeholder="Enter usage string" x-model="usage">
+        <input type="number" placeholder="Enter airtime available" x-model.number="airtime">
+        <button @click="remaining = enoughAirtime(usage, airtime)">Calculate Remaining Airtime</button>
+        <p x-text="remaining"></p>
+    </div>
+</body>
+</html>
